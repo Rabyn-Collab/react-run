@@ -11,18 +11,17 @@ const Header = () => {
   const links = [
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
-    { name: 'Create Post', path: '/post/create' }
   ];
 
 
   return (
-    <div className='bg-strongCyan flex justify-between py-3 px-10 text-white items-baseline'>
+    <div className='bg-black flex justify-between py-3 px-10 text-white items-baseline z-50 sticky top-0'>
 
 
       <div>
 
 
-        <NavLink to='/' replace={true}> <h1 className='text-2xl'>My Daily Posts</h1></NavLink>
+        <NavLink to='/' replace={true}> <h1 className='text-2xl'>Demo</h1></NavLink>
 
 
         {toggle === true && <div className='flex-col mt-2 space-y-2 hidden sm:flex  '>
@@ -41,9 +40,9 @@ const Header = () => {
 
 
       <div className='space-x-5  sm:hidden'>
-        <NavLink to='/about'>About</NavLink>
-        <NavLink to='/contact'>Contact</NavLink>
-        <NavLink to='/post/create'>Create Post</NavLink>
+        <NavLink className='menu-item' to='/about'>About</NavLink>
+        <NavLink className='menu-item' to='/contact'>Contact</NavLink>
+
       </div>
 
 
