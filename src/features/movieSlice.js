@@ -22,9 +22,8 @@ export const movieSlice = createApi({
 
 
 
-
-
   })
 })
 
 
+export const { useGetMovieByCategoryQuery } = movieSlice;

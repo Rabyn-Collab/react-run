@@ -1,66 +1,32 @@
-import axios from 'axios';
 import React from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react'
+import { useGetMovieByCategoryQuery } from '../features/movieSlice'
 
 const Home = () => {
 
-  const [movie, setMovie] = useState([]);
-  const [load, setLoad] = useState(false);
-  const [category, setCategory] = useState('top_rated');
+  // const m ={
+  //   id: 1,
+  //   title: 'lio'
+  // };
 
+  // const {id, title} = m;
 
-  const getMovieData = async (cate) => {
-    try {
-      setLoad(true);
+  const { data, isError, isLoading, error } = useGetMovieByCategoryQuery('popular');
 
-
-
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${cate}`,
-        {
-          params: {
-            'api_key': '2a0f926961d00c667e191a21c14461f8'
-          }
-        }
-      );
-      setLoad(false);
-      setMovie(response.data.results);
-    } catch (err) {
-      console.log(err);
-    }
+  if (isLoading) {
+    return <div className='h-[500px]'>
+      <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_a2chheio.json" background="transparent" speed="1" loop autoplay></lottie-player>
+    </div>
   }
 
-
-
-  useEffect(
-    () => {
-
-      getMovieData(category);
-
-    }, [category])
-
-
-  if (load) {
-    return <h1 className='text-2xl'>Loading.....</h1>
-  }
 
   return (
-    <>
-
-      <button onClick={() => {
-        setCategory('popular');
-      }} className='bg-black text-white p-2'>Change Some</button>
-
-      <div className='grid grid-cols-4 gap-7'>
-        {movie && movie.map((m) => {
-          return <div key={m.id}>
-            <h1>{m.title}</h1>
-            <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${m.poster_path}`} alt="" />
-          </div>
-        })}
-      </div>
-    </>
+    <div>
+      {data && data.results.map((movie) => {
+        return <div key={movie.id}>
+          <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movie.poster_path}`} alt="" />
+        </div>
+      })}
+    </div>
   )
 }
 
