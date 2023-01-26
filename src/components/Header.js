@@ -1,10 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { change } from '../features/post';
+import { change } from '../features/menuSlice';
+
 
 const Header = () => {
-  const { toggle } = useSelector((store) => store.post);
+  const { toggle } = useSelector((store) => store.menu);
   const dispatch = useDispatch();
 
 
@@ -15,13 +16,13 @@ const Header = () => {
 
 
   return (
-    <div className='bg-black flex justify-between py-3 px-10 text-white items-baseline z-50 sticky top-0'>
+    <div className='bg-[#032541] flex justify-between py-3 px-10 text-white items-baseline z-50 sticky top-0'>
 
 
       <div>
 
 
-        <NavLink to='/' replace={true}> <h1 className='text-2xl'>Demo</h1></NavLink>
+        <NavLink to='/' replace={true}> <h1 className='text-2xl'>Tmdb</h1></NavLink>
 
 
         {toggle === true && <div className='flex-col mt-2 space-y-2 hidden sm:flex  '>
@@ -40,8 +41,8 @@ const Header = () => {
 
 
       <div className='space-x-5  sm:hidden'>
-        <NavLink className='menu-item' to='/about'>About</NavLink>
-        <NavLink className='menu-item' to='/contact'>Contact</NavLink>
+        <NavLink className='menu-item' to='/page/top_rated'>Top_Rated</NavLink>
+        <NavLink className='menu-item' to='/page/upcoming'>UpComing</NavLink>
 
       </div>
 

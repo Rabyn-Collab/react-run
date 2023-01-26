@@ -1,11 +1,12 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import MovieShow from '../components/MovieShow';
-import { useGetMovieByCategoryQuery } from '../features/movieSlice'
+import { useGetMovieByCategoryQuery } from '../features/movieSlice';
 
-const Home = () => {
+const MovieByCategory = () => {
+  const { category } = useParams();
 
-
-  const { data, isError, isLoading, error } = useGetMovieByCategoryQuery('popular');
+  const { data, isError, isLoading, error } = useGetMovieByCategoryQuery(category);
 
   if (isLoading) {
     return <div className='h-[500px]'>
@@ -21,4 +22,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default MovieByCategory

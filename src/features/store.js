@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { movieSlice } from "./movieSlice";
-
+import menuSLice from './menuSlice';
 
 
 
@@ -8,6 +8,7 @@ import { movieSlice } from "./movieSlice";
 
 export const store = configureStore({
   reducer: {
+    menu: menuSLice.reducer,
     [movieSlice.reducerPath]: movieSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>
