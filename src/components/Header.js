@@ -1,13 +1,24 @@
+import { useFormik } from 'formik';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { change } from '../features/menuSlice';
 
 
 const Header = () => {
   const { toggle } = useSelector((store) => store.menu);
   const dispatch = useDispatch();
+  const nav = useNavigate();
 
+  const formik = useFormik({
+    initialValues: {
+      searchText: ''
+    },
+    onSubmit: ((val, { resetForm }) => {
+      nav(`/search/movie/${val.searchText}`);
+      resetForm();
+    })
+  });
 
   const links = [
     { name: 'About', path: '/about' },
@@ -16,7 +27,7 @@ const Header = () => {
 
 
   return (
-    <div className='bg-[#032541] flex justify-between py-3 px-10 text-white items-baseline z-50 sticky top-0'>
+    <div className='bg-[#032541] flex justify-between py-2 px-10 text-white items-baseline z-50 sticky top-0'>
 
 
       <div>
@@ -40,9 +51,20 @@ const Header = () => {
 
 
 
-      <div className='space-x-5  sm:hidden'>
+      <div className='space-x-5  sm:hidden flex items-center'>
         <NavLink className='menu-item' to='/page/top_rated'>Top_Rated</NavLink>
         <NavLink className='menu-item' to='/page/upcoming'>UpComing</NavLink>
+
+        <form onSubmit={formik.handleSubmit} className='w-[200px]'>
+          <div className='relative'>
+            <input type="search" placeholder='search movies' id='searchText' name='searchText' onChange={formik.handleChange} value={formik.values.searchText} className='block w-full pl-4 py-1 rounded-full outline-none border border-gray-300 text-gray-700' />
+
+            <div className='absolute right-2 inset-y-0 flex items-center pr-2'>
+              <button type='submit' className='text-green-700 '><i className="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+          </div>
+
+        </form>
 
       </div>
 
