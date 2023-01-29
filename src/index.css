@@ -14,7 +14,7 @@ body {
 .menu-item {}
 
 .menu-item:hover {
-  @apply bg-white text-black p-2
+  @apply bg-white text-black
 }
 
 /* 

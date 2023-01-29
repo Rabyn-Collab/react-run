@@ -1,13 +1,21 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import MovieShow from '../components/MovieShow';
-import { useGetMovieByCategoryQuery } from '../features/movieSlice'
+import { useGetMovieByCategoryQuery, useGetMovieByPageQuery } from '../features/movieSlice'
 
-const Home = () => {
-
-
-  const { data, isError, isLoading, error } = useGetMovieByCategoryQuery('popular');
+const PageQuery = () => {
   const nav = useNavigate();
+
+  const { state } = useLocation();
+
+  console.log(state);
+
+  const { data, isError, isLoading, error } = useGetMovieByPageQuery({
+    path: state.path,
+    page: state.page
+  });
+
+
 
   if (isLoading) {
     return <div className='h-[500px]'>
@@ -19,17 +27,17 @@ const Home = () => {
   return (
     <>
       <MovieShow movies={data} />
+
       <button onClick={() => {
         nav(`/movie/${data?.page}`, {
           state: {
-            path: 'popular',
+            path: state.path,
             page: data.page + 1
           }
         })
       }} className='bg-cyan-200 p-2'>Next Page</button>
-
     </>
   )
 }
 
-export default Home
+export default PageQuery

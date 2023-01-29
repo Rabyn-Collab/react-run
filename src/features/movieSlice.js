@@ -15,7 +15,18 @@ export const movieSlice = createApi({
       query: (query) => ({
         url: `/movie/${query}`,
         params: {
-          'api_key': api_key
+          'api_key': api_key,
+
+        }
+      })
+    }),
+
+    getMovieByPage: builder.query({
+      query: (query) => ({
+        url: `/movie/${query.path}`,
+        params: {
+          'api_key': api_key,
+          'page': query.page
         }
       })
     }),
@@ -46,4 +57,4 @@ export const movieSlice = createApi({
 })
 
 
-export const { useGetMovieByCategoryQuery, useGetSearchMoviesQuery, useGetMovieIdQuery } = movieSlice;
+export const { useGetMovieByCategoryQuery, useGetSearchMoviesQuery, useGetMovieIdQuery, useGetMovieByPageQuery } = movieSlice;
