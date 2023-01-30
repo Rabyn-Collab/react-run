@@ -19,14 +19,19 @@ const Home = () => {
   return (
     <>
       <MovieShow movies={data} />
-      <button onClick={() => {
-        nav(`/movie/${data?.page}`, {
-          state: {
-            path: 'popular',
-            page: data.page + 1
-          }
-        })
-      }} className='bg-cyan-200 p-2'>Next Page</button>
+
+      <div className='flex justify-center items-center space-x-4 pb-2'>
+        <h1 className='text-xl font-bold'>{data?.page}</h1>
+        <button onClick={() => {
+          nav(`/movie/${data?.page + 1}`, {
+            state: {
+              path: 'popular',
+              page: data.page + 1
+            }
+          })
+        }} className='bg-cyan-200 p-2'>Next Page</button>
+      </div>
+
 
     </>
   )

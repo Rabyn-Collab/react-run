@@ -52,6 +52,7 @@ const Header = () => {
 
 
       <div className='space-x-5  sm:hidden flex items-center'>
+        <NavLink className='menu-item' to='/news/page'>Show News</NavLink>
         <NavLink className='menu-item' to='/page/top_rated'>Top_Rated</NavLink>
         <NavLink className='menu-item' to='/page/upcoming'>UpComing</NavLink>
 

@@ -8,7 +8,7 @@ const PageQuery = () => {
 
   const { state } = useLocation();
 
-  console.log(state);
+
 
   const { data, isError, isLoading, error } = useGetMovieByPageQuery({
     path: state.path,
@@ -28,14 +28,23 @@ const PageQuery = () => {
     <>
       <MovieShow movies={data} />
 
-      <button onClick={() => {
-        nav(`/movie/${data?.page}`, {
-          state: {
-            path: state.path,
-            page: data.page + 1
-          }
-        })
-      }} className='bg-cyan-200 p-2'>Next Page</button>
+      <div className='flex justify-center items-center space-x-4 pb-2'>
+
+        <button onClick={() => {
+          nav(-1);
+        }} className='bg-cyan-200 p-2'>Prev Page</button>
+
+        <h1 className='text-xl font-bold'>{data?.page}</h1>
+        <button onClick={() => {
+          nav(`/movie/${state?.page + 1}`, {
+            state: {
+              path: 'popular',
+              page: state.page + 1
+            }
+          })
+        }} className='bg-cyan-200 p-2'>Next Page</button>
+      </div>
+
     </>
   )
 }
