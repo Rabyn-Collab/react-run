@@ -19,7 +19,7 @@ const menuSlice = createSlice({
       state.toggle = !state.toggle
     },
     changeQuery: (state, action) => {
-      state.query = action.payload
+      state.query = action.payload;
     }
   }
 });
