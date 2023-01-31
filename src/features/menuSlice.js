@@ -5,7 +5,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-  toggle: false
+  toggle: false,
+  query: 'hollywood'
 };
 
 
@@ -16,9 +17,12 @@ const menuSlice = createSlice({
   reducers: {
     change: (state, action) => {
       state.toggle = !state.toggle
+    },
+    changeQuery: (state, action) => {
+      state.query = action.payload
     }
   }
 });
 
-export const { change } = menuSlice.actions;
+export const { change, changeQuery } = menuSlice.actions;
 export default menuSlice;
