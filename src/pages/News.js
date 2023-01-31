@@ -15,6 +15,7 @@ const News = () => {
       <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_a2chheio.json" background="transparent" speed="1" loop autoplay></lottie-player>
     </div>
   }
+  console.log(news);
 
   return (
     <>
@@ -26,14 +27,14 @@ const News = () => {
           return <div key={i} className='shadow-xl hover:scale-105 ease-in duration-300 cursor-pointer'>
 
             <LazyLoad height={190}>
-              <img src={`${dat.urlToImage}`} alt="" />
+              <img src={`${dat.media}`} alt="" />
             </LazyLoad>
 
 
 
             <div className='p-2'>
               <h1 className='text-2xl font-medium'>{dat.title}</h1>
-              <p>{dat.content.substring(0, 100) + ' ....'}</p>
+              <p>{dat.summary.substring(0, 100) + ' ....'}</p>
             </div>
 
 
